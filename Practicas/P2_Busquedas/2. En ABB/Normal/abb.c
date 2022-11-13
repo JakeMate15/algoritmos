@@ -38,8 +38,9 @@ int main (int argc, char* argv[])
 	int B[20] = {322486, 14700764, 3128036, 6337399, 61396, 10393545, 2147445644, 1295390003, 450057883, 187645041, 1980098116, 152503, 5000, 1493283650, 214826, 1843349527, 1360839354, 2109248666, 2147470852, 0}; //Números a buscar
 	int i;	//Variables para loops
 	double tiempoT = 0; //Variable que recibe la suma total del tiempo tardado
-	int pos = -1; //Variable para verificar la posición en la que encontró el número
-	ABB elementoBuscado, abb; //Nodo del arbol con el elmento buscado y arbol usado para la busqueda
+	int no; //Variable para verificar el número encontrado y auxiliar para insertar datos al árbol
+	int pos = -1; //Variable para guardar la posicion del elemento
+	Raiz ABB, busq; //Declaración de los arboles que se usaran
 
 	//******************************************************************	
 	//Recepción y decodificación de argumentos
@@ -65,35 +66,31 @@ int main (int argc, char* argv[])
 	for(i=0;i<n;i++){
 		scanf("%d",&A[i]); //rellena el arreglo A
 	}
+		
+	//******************************************************************	
+	//Creación del árbol
+	//******************************************************************
+	ABB = nuevoNodo(A[0],0);
+	for(i=1;i<n-1;i++){
+		insertar(ABB, A[i], i); //Inserto datos en el árbol
+	}
 
-	
+
 	//For para buscar los números propuestos
 	for(i=0; i < 20; i++){
 		//******************************************************************	
 		//Iniciar el conteo del tiempo para las evaluaciones de rendimiento
 		//******************************************************************	
 		uswtime(&utime0, &stime0, &wtime0);
-
-		//******************************************************************	
-		//Creación del árbol
-		//******************************************************************
-		abb = nuevoNodo(A[0], 0);
-
-		/*
-		for(i=1;i<n;i++){
-			insertar(abb,A[i],i); //Inserto datos en el árbol
-		}
 		
 		//******************************************************************	
 		//Algoritmo
 		//******************************************************************	
-		elementoBuscado = busqueda(abb,B[i]);
-		if(elementoBuscado != NULL){
-			pos = elementoBuscado->posicion;
-		}*/
+		busq = busqueda(ABB,B[i]);
 
-		free(abb);
-		free(elementoBuscado);
+		if(busq!=NULL)  
+			pos = busq->posicion;
+		
 		//******************************************************************	
 		//Evaluar los tiempos de ejecución 
 		//******************************************************************
@@ -101,10 +98,13 @@ int main (int argc, char* argv[])
 		
 		//Cálculo del tiempo de ejecución del programa
 		printf("\n");
-		printf("Para x = %d\n pos = %d\n", B[i], pos);
+		printf("Para x = %d\npos = %d\n", B[i], pos);
 		printf("real (Tiempo total)  %.10f s\n",  wtime1 - wtime0);
 		printf("real (Tiempo total exponencial)  %.10e s\n",  wtime1 - wtime0);
 		printf("\n");
+
+		//Limpiamos la posicion
+		pos=-1;
 
 		tiempoT = tiempoT + (wtime1 - wtime0);
 	}

@@ -84,7 +84,7 @@ int main (int argc, char* argv[])
 		
 		//Cálculo del tiempo de ejecución del programa
 		printf("\n");
-		printf("Para x = %d\n pos = %d\n", B[i], pos);
+		printf("Para x = %d\npos = %d\n", B[i], pos);
 		printf("real (Tiempo total)  %.10f s\n",  wtime1 - wtime0);
 		printf("real (Tiempo total exponencial)  %.10e s\n",  wtime1 - wtime0);
 		printf("\n");

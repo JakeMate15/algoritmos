@@ -25,19 +25,18 @@
 	-----------------------------------------------
 	Argumentos:
 	int info: información que se guardará en el nodo
-	int pos: Posicion del valor dentro del arreglo
 	Variables utilizadas:
-	*return* ABB nvo: estructura árbol que se le asignará un nuevo nodo
+	*return* Raiz nvo: estructura árbol que se le asignará un nuevo nodo
 */
-ABB nuevoNodo(int info, int pos){
-	ABB nvo;
-	nvo = (ABB) malloc(sizeof(Arbol));
+Raiz nuevoNodo(int info, int pos){
+	struct Nodo* nvo;
+	nvo = (Raiz) malloc(sizeof(struct Nodo));
 	if(nvo == NULL){
-		printf("No se ha creado el nodo");
+		printf("No hay espacio en memoria");
 		exit(1);
 	}
-	nvo ->dato = info;
-	nvo ->posicion = pos;
+	nvo->dato = info;
+	nvo->posicion = pos;
 	nvo ->izq = nvo ->der = NULL;
 	return nvo;
 }
@@ -46,54 +45,46 @@ ABB nuevoNodo(int info, int pos){
 	Proceso para insertar información en un nodo del árbol binario 
 	--------------------------------------------------------------
 	Argumentos:
-	ABB: estructura árbol que se le realizaran las modificaciones
+	Raiznodo: estructura árbol que se le realizaran las modificaciones
 	int info: información que se guardará en un nodo
-	int pos: Posicion del valor dentro del arreglo
 	Variables
-	ABB nodo devuelve el nodo del arreglo en el que se encuentra sin cambio alguno
+	Raiz nodo devuelve el nodo del arreglo en el que se encuentra sin cambio alguno
 */
-void insertar(ABB nodo, int info, int pos){
-	if(info > nodo->dato){
-		if(nodo->der == NULL){
-			nodo->der = nuevoNodo(info, pos);
-		}else{
-			insertar(nodo->der, info,pos);
-		}
-	}else{
-		if(nodo->izq == NULL){
-			nodo->izq = nuevoNodo(info, pos);
-		}else{
-			insertar(nodo->izq, info, pos);
-		}
-	}	
+Raiz insertar(Raiz nodo, int info, int pos){
+	if(nodo == NULL) return nuevoNodo(info,pos);
+	
+	if(info < nodo->dato) nodo->izq = insertar(nodo->izq, info, pos);
+	if(info > nodo->dato) nodo->der = insertar(nodo->der, info, pos);
+	
+	return nodo;
 }
-
 
 /*
-	Proceso recursivo para recorrer el árbol en inorden 
-	---------------------------------------------------
+	Proceso recursivo para recorrer el árbol en postorden 
+	-----------------------------------------------------
 	Argumentos:
-	ABB nodo: estructura árbol al que recorrerán
+	Raiznodo: estructura árbol al que recorrerán
 */
-void inorden(ABB nodo){
-	if(nodo!=NULL){
-		inorden(nodo->izq);
-		//printf("%d ", nodo->dato); //Ver los elementos del arbol
-		inorden(nodo->der);
+void postorden(Raiz nodo){
+	if(nodo != NULL){
+		postorden(nodo->izq);
+		postorden(nodo->der);
+		printf("%d %d\n", nodo->dato,nodo->posicion);
 	}
 }
+
 
 /*
 	Algoritmo: Busqueda en ABB
 	--------------------------
 	Argumentos:
-	ABB nodo: estructura árbol al que aplicarán procedimiento
+	Raiz nodo: estructura árbol al que aplicarán procedimiento
 	int x: número a encontrar
 	Variables:
 	return nodo->dato si se encontró
 	return -1 si no se encontró
 */
-ABB busqueda(ABB nodo, int x){
+Raiz busqueda(Raiz nodo, int x){
 	if(nodo == NULL) return NULL; //Se manda cuando no se encontró en número y ya recorrió el árbol
 	
 	if(nodo->dato == x) return nodo; //Se manda cuando se encontró el número

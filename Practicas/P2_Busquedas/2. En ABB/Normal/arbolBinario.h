@@ -11,28 +11,27 @@
 //*****************************************************************
 //DEFINICIÓN DE ÁRBOL BINARIO
 //*****************************************************************
-#ifndef _Arbol_
-#define _Arbol_
+#ifndef _arbol_
+#define _arbol_
 
 //********************************************************************************
 //DEFINICIÓN DE ESTRUCTURAS
 //********************************************************************************
-typedef struct Nodo{
+struct Nodo{
 	int dato;
 	int posicion;
 	struct Nodo *izq;
 	struct Nodo *der;
-}Arbol;
+};
 
-typedef Arbol *ABB;
+typedef struct Nodo * Raiz;
 
 //*****************************************************************
-//Operaciones de un ABB
+//DECLARACIÓN DE FUNCIONES
 //*****************************************************************
-ABB nuevoNodo(int valor, int pos);
-void insertar(ABB raiz, int valor, int pos);
-void inorden(ABB raiz);
-ABB busqueda(ABB raiz, int valor);
-
+Raiz nuevoNodo(int, int);
+Raiz insertar(Raiz, int, int);
+void postorden(Raiz);
+Raiz busqueda(Raiz , int);
 
 #endif
