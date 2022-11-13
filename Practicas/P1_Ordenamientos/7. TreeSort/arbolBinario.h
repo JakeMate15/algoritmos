@@ -28,7 +28,7 @@ struct Nodo{
 //*****************************************************************
 struct Nodo * nuevoNodo(int);
 void insertar(struct Nodo *, int);
-void preorden(struct Nodo *);
+void preorden(struct Nodo *); \
 void inorden(struct Nodo *);
 void postorden(struct Nodo *);
 void guardaInOrden(struct Nodo *, int *, int *);

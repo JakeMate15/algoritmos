@@ -32,7 +32,7 @@ struct Nodo * nuevoNodo(int info){
 	struct Nodo* nvo;
 	nvo = (struct Nodo *) malloc(sizeof(struct Nodo));
 	if(nvo == NULL){
-		printf("No hay espacio en memoria");
+		printf("No se ha creado el nodo");
 		exit(1);
 	}
 	nvo ->dato = info;
