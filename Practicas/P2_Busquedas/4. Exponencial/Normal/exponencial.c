@@ -150,8 +150,10 @@ int exponencial(int *A, int n, int x){
 	
 	while(i < n && A[i] <= x) i = i * 2;
 	
-	if(i <= n-1) return binaria(A, i/2, i, x);
-	else return binaria(A, i/2, n-1, x);
+	if(i <= n-1) 
+		return binaria(A, i/2, i, x);
+	else 
+		return binaria(A, i/2, n-1, x);
 }
 
 /*

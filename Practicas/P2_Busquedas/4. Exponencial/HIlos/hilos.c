@@ -27,12 +27,14 @@ int B[20] = {322486, 14700764, 3128036, 6337399, 61396, 10393545, 2147445644, 12
 int n; 						//Cantidad de datos
 int posElemBuscado; 		//Variable con la posición del elemento buscado del arreglo B.
 int posElem = -1;			//Posición del elemento dentro del arreglo, el -1 indica que no se encontró
+int potencia = 1;             //Variable para encontrar la potencia menor más cercana al número buscado
+pthread_t *arrHilos; 		//Arreglo para los hilos generados
 
 //*****************************************************************
 //DECLARACIÓN DE FUNCIONES
 //*****************************************************************
 int * crearArreglo(int);
-void* binariaPorSeccion(void *);
+void* exponencial(void *id);
 int binaria(int *, int, int, int);
 
 //*****************************************************************
@@ -46,8 +48,7 @@ int main (int argc, char* argv[])
 	double utime0, stime0, wtime0,utime1, stime1, wtime1; //Variables para medición de tiempos
 	int i, j;					//Variables para loops
 	double tiempoT = 0; 		//Variable que recibe la suma total del tiempo tardado
-	pthread_t *arrHilos; 		//Arreglo para los hilos generados
-
+    
 	//******************************************************************	
 	//Recepción y decodificación de argumentos
 	//******************************************************************	
@@ -84,15 +85,26 @@ int main (int argc, char* argv[])
 		//******************************************************************	
 		//Algoritmo
 		//******************************************************************
-		//Creamos y procesamos los respectivos hilos
-		for(j=0;j<numeroHilos; j++){
+        //Encontramos la potencia más cercana
+        potencia = 1;
+        if(A[0] == B[i]){
+		    posElem = 0;
+	    }
+        else{
+            while(potencia < n && A[potencia] <= B[i]) 
+                potencia *= 2;
+        }
 
-            if(pthread_create (&arrHilos[j], NULL, binariaPorSeccion, &j) != 0){
+        //Creamos y procesamos los respectivos hilos
+        for(j=0;j<numeroHilos; j++){
+
+            if(pthread_create (&arrHilos[j], NULL, exponencial, NULL) != 0){
                 printf("No se han creado los hilos");
                 exit(1);
             }
 
         }
+	
 		
 		//Unión de todos los hilos
         for(j=0; j<numeroHilos; j++){
@@ -154,28 +166,26 @@ int * crearArreglo(int n){
 
 
 /*
-	Algoritmo de búsqueda binaria por secciones
+	Algoritmo de búsqueda exponencial
 	--------------------------------------------
 	Argumentos:
 	void *id el número de hilo que está por ejecutar
 	Variables utilizadas:
-	int numeroHilo: número del hilo procesado
 	int inicio: posición en la que se va a iniciar la búsqueda dentro del arreglo
 	int fin: posición en la que va a terminar la búsqueda
-	int i: auxiliar para el loop
+    int posEncontrada: bandera que indica si se encontro el elemento
 */
 
-void* binariaPorSeccion(void *id){
+void* exponencial(void *id){
     int inicio,fin;
-    int numeroHilo = *((int *) id);
-	int posEncontrada;
+    int posEncontrada;
 
 	//Intervalo en donde se buscara el elemento
-    inicio=(numeroHilo*n)/numeroHilos;
-	if(numeroHilo==numeroHilos)	
-		fin=n;
+    inicio=potencia/2;
+	if(potencia <= n-1)	
+		fin = potencia;
 	else
-		fin=((numeroHilo+1)*n)/numeroHilos-1;
+		fin=n-1;
 
 	posEncontrada = binaria(A,inicio,fin,B[posElemBuscado]);
 	if(posEncontrada!=-1){
@@ -183,6 +193,7 @@ void* binariaPorSeccion(void *id){
 	}
     
 }
+
 
 /*
 	Algoritmo de búsqueda binaria (recursivo)
