@@ -1,0 +1,127 @@
+
+Para x = 322486
+pos = -1
+real (Tiempo total)  0.0002520084 s
+real (Tiempo total exponencial)  2.5200843811e-04 s
+
+
+Para x = 14700764
+pos = -1
+real (Tiempo total)  0.0003209114 s
+real (Tiempo total exponencial)  3.2091140747e-04 s
+
+
+Para x = 3128036
+pos = -1
+real (Tiempo total)  0.0002670288 s
+real (Tiempo total exponencial)  2.6702880859e-04 s
+
+
+Para x = 6337399
+pos = -1
+real (Tiempo total)  0.0002191067 s
+real (Tiempo total exponencial)  2.1910667419e-04 s
+
+
+Para x = 61396
+pos = -1
+real (Tiempo total)  0.0002639294 s
+real (Tiempo total exponencial)  2.6392936707e-04 s
+
+
+Para x = 10393545
+pos = -1
+real (Tiempo total)  0.0002009869 s
+real (Tiempo total exponencial)  2.0098686218e-04 s
+
+
+Para x = 2147445644
+pos = -1
+real (Tiempo total)  0.0002889633 s
+real (Tiempo total exponencial)  2.8896331787e-04 s
+
+
+Para x = 1295390003
+pos = -1
+real (Tiempo total)  0.0001938343 s
+real (Tiempo total exponencial)  1.9383430481e-04 s
+
+
+Para x = 450057883
+pos = -1
+real (Tiempo total)  0.0002160072 s
+real (Tiempo total exponencial)  2.1600723267e-04 s
+
+
+Para x = 187645041
+pos = -1
+real (Tiempo total)  0.0002009869 s
+real (Tiempo total exponencial)  2.0098686218e-04 s
+
+
+Para x = 1980098116
+pos = -1
+real (Tiempo total)  0.0002591610 s
+real (Tiempo total exponencial)  2.5916099548e-04 s
+
+
+Para x = 152503
+pos = -1
+real (Tiempo total)  0.0001790524 s
+real (Tiempo total exponencial)  1.7905235291e-04 s
+
+
+Para x = 5000
+pos = -1
+real (Tiempo total)  0.0002090931 s
+real (Tiempo total exponencial)  2.0909309387e-04 s
+
+
+Para x = 1493283650
+pos = 542694
+real (Tiempo total)  0.0002229214 s
+real (Tiempo total exponencial)  2.2292137146e-04 s
+
+
+Para x = 214826
+pos = -1
+real (Tiempo total)  0.0002081394 s
+real (Tiempo total exponencial)  2.0813941956e-04 s
+
+
+Para x = 1843349527
+pos = -1
+real (Tiempo total)  0.0002169609 s
+real (Tiempo total exponencial)  2.1696090698e-04 s
+
+
+Para x = 1360839354
+pos = -1
+real (Tiempo total)  0.0002610683 s
+real (Tiempo total exponencial)  2.6106834412e-04 s
+
+
+Para x = 2109248666
+pos = -1
+real (Tiempo total)  0.0002398491 s
+real (Tiempo total exponencial)  2.3984909058e-04 s
+
+
+Para x = 2147470852
+pos = -1
+real (Tiempo total)  0.0001959801 s
+real (Tiempo total exponencial)  1.9598007202e-04 s
+
+
+Para x = 0
+pos = -1
+real (Tiempo total)  0.0002479553 s
+real (Tiempo total exponencial)  2.4795532227e-04 s
+
+
+n = 1000000
+Tiempo total de los 20 números a buscar = 0.0046639442 s
+Tiempo total de los 20 números a buscar = 4.6639442444e-03 s
+Tiempo promedio para todas las búsquedas = 0.0002331972 s
+Tiempo promedio para todas las búsquedas = 2.3319721222e-04 s
+
