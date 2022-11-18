@@ -145,7 +145,7 @@ int * crearArreglo(int n){
 	-- return offset+1 posición del arreglo en el que se ubica el número a buscar
 	-- return -1 si no se encuentra
 */
-int fibo(int *A, int x, int inicio, int fin){
+int fibo(int *A, int n, int x){
 	int tern2 = 0, tern1 = 1, tern = tern2 + tern1, offset = -1, i;
 	
 	while(tern < n){
